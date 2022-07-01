@@ -1,6 +1,7 @@
 ﻿using Fullstack_Example.Architecture.Domain.Entities.Authentication;
 using Fullstack_Example.Architecture.Domain.Entities.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Fullstack_Example.Architecture.Infrastructure
 {
@@ -15,13 +16,14 @@ namespace Fullstack_Example.Architecture.Infrastructure
 
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services
-                .AddDefaultIdentity<AppUser>(options =>
+/*            services
+                .AddIdentity<AppUser>(options =>
                 {
                     // options are set here
                 })
                 .AddRoles<UserRole>()
-                .AddEntityFrameworkStores<AppDbContext>();
+                .AddEntityFrameworkStores<AppDbContext>();*/
+
             return services;
         }
     }

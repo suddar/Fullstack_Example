@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIDConnect" Version="6.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="6.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -35,7 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Architecture\Application\Commands\Learner\" />
+    <Folder Include="Architecture\Application\Commands\Learners\" />
+    <Folder Include="Architecture\Application\Services\Abstractions\" />
     <Folder Include="Architecture\Infrastructure\" />
     <Folder Include="ClientApp\" />
   </ItemGroup>

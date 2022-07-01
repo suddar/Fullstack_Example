@@ -1,6 +1,6 @@
 ﻿namespace Fullstack_Example.Architecture.Domain.Abstraction
 {
-    public class AuditableEntity:BaseEntity
+    public abstract class AuditableEntity:BaseEntity
     {
         public DateTime Created { get; set; }
 

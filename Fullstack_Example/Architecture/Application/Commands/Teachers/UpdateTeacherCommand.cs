@@ -1,7 +1,4 @@
-﻿using MediatR;
-using MediatRExample.Domain;
-using MediatRExample.Infrastructure;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Fullstack_Example.Architecture.Application.Commands.TeacherCommands;
 

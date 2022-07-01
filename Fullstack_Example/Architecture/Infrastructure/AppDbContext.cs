@@ -1,5 +1,4 @@
-﻿using Fullstack_Example.Architecture.Domain.Entities;
-using Fullstack_Example.Architecture.Domain.Entities.Authentication;
+﻿using Fullstack_Example.Architecture.Domain.Entities.Authentication;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
