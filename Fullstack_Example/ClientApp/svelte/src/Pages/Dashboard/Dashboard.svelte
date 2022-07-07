@@ -1,58 +1,79 @@
 <script lang="ts">
-    import DashboardContent from "./DashboardContent.svelte";
+    import CoursePanel from "./Courses.svelte";
     import type { Topic } from "src/Models/Topic";
     import { onMount } from "svelte";
     import { EntittyService } from "../../lib/entitty-service";
     import { Button } from "sveltestrap";
+    import AddTopic from "./AddTopic.svelte";
+    import EditTopic from "./EditTopic.svelte";
 
     var service = new EntittyService();
     let topics: Topic[] = [];
-    var dashboardContent: DashboardContent;
-
     var component: any;
     var props: any;
 
-    async function onTopicItemClick(value) {
-        if (dashboardContent != null) await dashboardContent.loadTopic(value);
-        component = DashboardContent;
-        props = { topicId: value };
+    async function showCourses(topicId: number) {
+        let response = await service.getEntityById<Topic>("Topic", topicId);
+        let topic = response.data;
+        component = CoursePanel;
+        props = {
+            courses: topic.courses,
+        };
     }
 
-    function createTopic() {}
+    function createTopic() {
+        component = AddTopic;
+        props = { id: 1 };
+    }
+    function editTopic(id: number) {
+        component = EditTopic;
+        props = { topicId: id };
+    }
 
-    onMount(async () => {
+    async function removeTopic(id: number) {
+        await service.removeEntity("Topic", id);
+        await getTopicItems();
+    }
+
+    async function getTopicItems() {
         var response = await service.getEntities<Topic>("Topic");
         topics = response.data;
+        await showCourses(topics[0].id);
+    }
 
-        component = DashboardContent;
-        props = { topicId: 1 };
+    onMount(async () => {
+        await getTopicItems();
     });
 </script>
 
 <nav class="left-panel">
     <div class="topic-title">
-        <h3>Topic</h3>
+        <h3 style="display:inline-block ;">Topic</h3>
+        <Button on:click={() => createTopic()}>Add</Button>
     </div>
     <div>
         <ul style="padding-left:0px ;">
             {#each topics as topic}
                 <li style="list-style-type:none ;">
-                    <p on:click={() => onTopicItemClick(topic.id)}>
-                        {topic.name} <span><Button>x</Button></span>
-                    </p>
+                    <div style="display: inline-block;">
+                        <h4 on:click={() => showCourses(topic.id)}>
+                            {topic.name}
+                        </h4>
+                    </div>
+                    <div style="display: inline-block;float: right;">
+                        <Button on:click={() => editTopic(topic.id)}
+                            >Edit</Button
+                        >
+                        <button on:click={() => removeTopic(topic.id)}>x</button
+                        >
+                    </div>
                 </li>
             {/each}
         </ul>
     </div>
-    <div class="topic-control-panel">
-        <Button>Add</Button>
-        <Button>Edit</Button>
-        <Button>Remove</Button>
-    </div>
 </nav>
 
 <div class="right-panel">
-    <!-- <DashboardContent prop1={topicId} bind:this={dashboardContent} /> -->
     <svelte:component this={component} {...props} />
 </div>
 

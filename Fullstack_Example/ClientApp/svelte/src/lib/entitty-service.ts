@@ -30,7 +30,7 @@ export class EntittyService {
         return JSON.stringify(repsonse.data);
     }
 
-    async removeEntity(id: number, entityName: string) {
+    async removeEntity(entityName: string, id: number) {
         var url = `${this.baseUrl}/${entityName}/${id}`;
 
         // return await fetch(url, {
