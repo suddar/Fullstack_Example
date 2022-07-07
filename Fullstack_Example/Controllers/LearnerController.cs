@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Fullstack_Example.Architecture.Application.DataObjects;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fullstack_Example.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LearnerController : EntityControllerBase<Learner>
+    public class LearnerController : EntityControllerBase
     {
-        public LearnerController(IEntityService<Learner> entityService) : base(entityService)
+        public LearnerController(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
     }
