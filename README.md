@@ -7,6 +7,7 @@ This example I made is for learning purposes only. With reference from <a href='
 <li>API backend <a href='https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-6.0'>ASP.Net Core</a> </li>
 <li>Fontend <a href='https://svelte.dev/'>Svelte</a></li>
 <li>Database <a href='https://docs.microsoft.com/en-us/ef/core/'>Entity Framework Core 6</a></li>
+<li><a href='https://automapper.org/'>AutoMapper</a></li>
 </ul>
 
 <h1>Getting started</h1>
