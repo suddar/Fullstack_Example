@@ -24,5 +24,5 @@ This example I made is for learning purposes only. With reference from <a href='
 <p>Navigate to Fullstack_Example/ClientApp/svelte</p>
 <p>Install dependencies: <b>npm install</b></p>
 <p>Launch client: <b>npm run dev</b</p>
-<p>Access the Client App via link <b>https://localhost:3000</b></p>
+<p>Access the Client App via link <b>http://localhost:3000</b></p>
  
