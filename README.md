@@ -13,6 +13,7 @@ This example I made is for learning purposes only. With reference from <a href='
  <p>1. clone this repository https://github.com/suddar/Fullstack_Example.git</p>
  <p>2. install <a href='https://dotnet.microsoft.com/download/dotnet/6.0'>Asp.Net Core 6</a></p> 
  <p>3. install <a href='https://nodejs.org/en/'>Node.js LTS</a></p>
+ <p>4. install <a href ='https://www.microsoft.com/en-us/sql-server/sql-server-2019'>SQL Server 2019</a></p>
  
 <h3>Launch the backend API</h3>
 <p>Create a database with Entity Framework 6 using <b> Update-Database </b> or <b> dotnet ef database update</b></p>
