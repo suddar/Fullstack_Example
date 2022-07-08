@@ -1,11 +1,23 @@
 <script lang="ts">
-    import TopicPanel from "./Topic/TopicPanel.svelte";
-    import Courses from "./Course/Courses.svelte";
+    import TopicPanel from "./LearningPanel/Topic/TopicPanel.svelte";
+    import Courses from "./LearningPanel/Course/Courses.svelte";
     import DashboardNavBar from "./Navigator/DashboardNavBar.svelte";
     import { Messenger } from "../../lib/messenger";
+    import { _switchComponent } from "./Dashboard";
+    import LearningPanel from "./LearningPanel/LearningPanel.svelte";
+    import UserPanel from "./UserPanel/UserPanel.svelte";
+
+    const components = {
+        UserPanel,
+        LearningPanel,
+    };
+
+    let componentName: string = "UserPanel";
+    let props: any;
 
     function switchComponent() {
-        console.log(this.text);
+        console.log(this.componentName);
+        componentName = this.componentName;
     }
 
     Messenger.add("Dashboard", switchComponent);
@@ -86,8 +98,9 @@
 </nav> -->
 
 <DashboardNavBar />
-<TopicPanel />
-<Courses />
+<!-- <LearningPanel /> -->
+<!-- <TopicPanel />
+<Courses /> -->
 <div class="right-panel">
-    <!-- <svelte:component this={component} {...props} /> -->
+    <svelte:component this={components[componentName]} {...props} />
 </div>

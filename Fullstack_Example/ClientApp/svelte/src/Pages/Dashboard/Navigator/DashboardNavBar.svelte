@@ -1,4 +1,6 @@
 <script lang="ts">
+    import LearningPanel from "./../LearningPanel/LearningPanel.svelte";
+    import UserPanel from "./../UserPanel/UserPanel.svelte";
     import { Button } from "sveltestrap";
     import { createEventDispatcher } from "svelte";
     import NavBarItem from "./NavBarItem.svelte";
@@ -7,11 +9,16 @@
 
 <div class="db-nav-bar">
     <nav>
-        <NavBarItem icon="fa-regular fa-user fa-lg" text="User" />
-        <span style="font-size: 1em; color: darkcyan;">
-            <i class="fa-regular fa-address-book fa-lg" />
-            Learning
-        </span>
+        <NavBarItem
+            icon="fa-regular fa-user fa-lg"
+            text="User"
+            componentName="UserPanel"
+        />
+        <NavBarItem
+            icon="fa-regular fa-address-book fa-lg"
+            text="Learning"
+            componentName="LearningPanel"
+        />
     </nav>
 </div>
 
