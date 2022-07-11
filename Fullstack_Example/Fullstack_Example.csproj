@@ -40,6 +40,7 @@
     <Folder Include="Architecture\Application\Services\Abstractions\" />
     <Folder Include="Architecture\Infrastructure\" />
     <Folder Include="ClientApp\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using Fullstack_Example.Architecture.Application.DataObjects;
+﻿using Fullstack_Example.Architecture.Application.DataObjects.CourseDtos;
 using Fullstack_Example.Architecture.Domain.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +15,7 @@ namespace Fullstack_Example.Controllers
 
         #region CRUD
         [HttpPost]
-        public async Task<CreateResult<Course>?> CreateEntity([FromBody] CourseDto entityToCreateInput)
+        public async Task<CreateResult<Course>?> CreateEntity([FromBody] CreateCourseDto entityToCreateInput)
         {
             var entityToCreate = _mapper.Map<Course>(entityToCreateInput);
             await _entityService.Add(entityToCreate);
@@ -34,26 +34,27 @@ namespace Fullstack_Example.Controllers
         }
 
         [HttpGet]
-        public async Task<GetResult<IEnumerable<CourseDto>>?> GetEntities()
+        public async Task<GetResult<IEnumerable<GetCourseDto>>?> GetEntities()
         {
             var entities = await _dbContext.Set<Course>()
-                .ProjectTo<CourseDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<GetCourseDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
-            return new GetResult<IEnumerable<CourseDto>>(entities);
+            return new GetResult<IEnumerable<GetCourseDto>>(entities);
         }
 
         [HttpGet("{id}")]
-        public async Task<GetResult<Course>?> GetEntityById(int id)
+        public async Task<GetResult<GetCourseDto>?> GetEntityById(int id)
         {
             var entity = await _dbContext.Set<Course>()
                 .Where(x => x.Id == id)
+                .ProjectTo<GetCourseDto>(_mapper.ConfigurationProvider)
                 .FirstAsync();
             if (entity == null) return null;
-            return new GetResult<Course>(entity);
+            return new GetResult<GetCourseDto>(entity);
         }
 
         [HttpPut]
-        public async Task<UpdateResult<Course>?> UpdateEntity([FromBody] CourseDto entityToUpdateInput)
+        public async Task<UpdateResult<Course>?> UpdateEntity([FromBody] UpdateCourseDto entityToUpdateInput)
         {
             var entityToUpdate = await _dbContext.FindAsync<Course>(entityToUpdateInput.Id);
             if (entityToUpdate == null) return null;

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Fullstack_Example.Architecture.Application.DataObjects;
+using Fullstack_Example.Architecture.Application.DataObjects.CourseDtos;
+using Fullstack_Example.Architecture.Application.DataObjects.TopicDtos;
 
 namespace Fullstack_Example.Architecture.Application.MapperProfiles
 {
@@ -7,8 +8,14 @@ namespace Fullstack_Example.Architecture.Application.MapperProfiles
     {
         public MyProfile()
         {
-            CreateMap<Topic, TopicDto>().ReverseMap();
-            CreateMap<Course, CourseDto>().ReverseMap();
+            // Topic
+            CreateMap<Topic, CreateTopicDto>().ReverseMap();
+            CreateMap<Topic, GetTopicDto>().ReverseMap();
+            CreateMap<Topic, UpdateTopicDto>().ReverseMap();
+
+            CreateMap<Course, CreateCourseDto>().ReverseMap();
+            CreateMap<Course, GetCourseDto>().ReverseMap();
+            CreateMap<Course, UpdateCourseDto>().ReverseMap();
         }
     }
 }

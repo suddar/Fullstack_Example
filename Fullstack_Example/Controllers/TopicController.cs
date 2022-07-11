@@ -1,4 +1,5 @@
-﻿using Fullstack_Example.Architecture.Application.Interfaces;
+﻿using Fullstack_Example.Architecture.Application.DataObjects.TopicDtos;
+using Fullstack_Example.Architecture.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fullstack_Example.Controllers
@@ -13,7 +14,7 @@ namespace Fullstack_Example.Controllers
 
         #region CRUD
         [HttpPost]
-        public async Task<CreateResult<Topic>?> CreateEntity([FromBody] TopicDto entityToCreateInput)
+        public async Task<CreateResult<Topic>?> CreateEntity([FromBody] CreateTopicDto entityToCreateInput)
         {
             var entityToCreate = _mapper.Map<Topic>(entityToCreateInput);
             await _entityService.Add(entityToCreate);
@@ -32,31 +33,33 @@ namespace Fullstack_Example.Controllers
         }
 
         [HttpGet]
-        public async Task<GetResult<IEnumerable<TopicDto>>?> GetEntities()
+        public async Task<GetResult<IEnumerable<GetTopicDto>>?> GetEntities()
         {
             var entities = await _dbContext.Set<Topic>()
                 .Include(x => x.Courses)
-                .ProjectTo<TopicDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<GetTopicDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
-            return new GetResult<IEnumerable<TopicDto>>(entities);
+            return new GetResult<IEnumerable<GetTopicDto>>(entities);
         }
 
         [HttpGet("{id}")]
-        public async Task<GetResult<Topic>?> GetEntityById(int id)
+        public async Task<GetResult<GetTopicDto>?> GetEntityById(int id)
         {
             var entity = await _dbContext.Set<Topic>()
                 .Where(x => x.Id == id)
                 .Include(_ => _.Courses)
+                .ProjectTo<GetTopicDto>(_mapper.ConfigurationProvider)
                 .FirstAsync();
             if (entity == null) return null;
-            return new GetResult<Topic>(entity);
+            return new GetResult<GetTopicDto>(entity);
         }
 
         [HttpPut]
-        public async Task<UpdateResult<Topic>?> UpdateEntity([FromBody] TopicDto entityToUpdateInput)
+        public async Task<UpdateResult<Topic>?> UpdateEntity([FromBody] CreateTopicDto entityToUpdateInput)
         {
+            Console.WriteLine($"UPDATE ID: {entityToUpdateInput.Id}, NAME {entityToUpdateInput.Name}");
             var entityToUpdate = await _dbContext.FindAsync<Topic>(entityToUpdateInput.Id);
-            if (entityToUpdate == null) return null;
+            if (entityToUpdate == null) return default;
 
             entityToUpdate.Name = entityToUpdateInput.Name;
             _dbContext.Update(entityToUpdate);
