@@ -5,7 +5,7 @@ This example I made is for learning purposes only. With reference from <a href='
 <h1>Technologies</h1>
 <ul>
 <li>API backend <a href='https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-6.0'>ASP.Net Core</a> </li>
-<li>Fontend <a href='https://svelte.dev/'>Svelte</a></li>
+<li>Fontend <a href='https://svelte.dev/'>Sveltekit</a></li>
 <li>Database <a href='https://docs.microsoft.com/en-us/ef/core/'>Entity Framework Core 6</a></li>
 <li><a href='https://automapper.org/'>AutoMapper</a></li>
 </ul>
@@ -23,7 +23,7 @@ This example I made is for learning purposes only. With reference from <a href='
 <p>Initialize the seed database using the seed API</p>
 
 <h3>Launch the fontend</h3>
-<p>Navigate to Fullstack_Example/ClientApp/svelte</p>
+<p>Navigate to Fullstack_Example/ClientApp/sveltekit</p>
 <p>Install dependencies: <b>npm install</b></p>
 <p>Launch client: <b>npm run dev</b</p>
 <p>Access the Client App via link <b>http://localhost:3000</b></p>
