@@ -1,6 +1,4 @@
 ﻿using Fullstack_Example.Architecture.Application.DataObjects.CourseDtos;
-using Fullstack_Example.Architecture.Domain.Results;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fullstack_Example.Controllers
