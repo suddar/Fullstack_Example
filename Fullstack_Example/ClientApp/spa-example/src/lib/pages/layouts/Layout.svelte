@@ -1,9 +1,11 @@
 <script>
-    import NavigatorBar from "../routers/NavigatorBar.svelte";
+    import RootRouter from "../routers/RootRouter.svelte";
 </script>
 
 <header>
-    <NavigatorBar />
+    <RootRouter />
 </header>
-<slot/>
+<main>
+    <slot />
+</main>
 <footer>Footer</footer>

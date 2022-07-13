@@ -1,4 +1,9 @@
 <script>
+import DashboardLayout from "../layouts/DashboardLayout.svelte";
+import SideMenu from "./components/SideMenu.svelte";
+
+</script>
+<!-- <script>
     import SideMenu from "./components/SideMenu.svelte";
     let pageContent;
     let props;
@@ -8,4 +13,6 @@
 <SideMenu />
 <div class="db-page-content">
     <svelte:component this={pageContent} {...props} />
-</div>
+</div> -->
+
+<SideMenu/>
