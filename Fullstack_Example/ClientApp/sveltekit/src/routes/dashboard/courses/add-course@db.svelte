@@ -23,3 +23,7 @@
 <h3>Course name {courseName}</h3>
 
 <button on:click={addEntity}>Add</button>
+
+<div>
+	<a href="/dashboard/topics">Back to topics</a>
+</div>

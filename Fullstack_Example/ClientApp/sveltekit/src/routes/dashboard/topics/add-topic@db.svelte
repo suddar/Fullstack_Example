@@ -18,3 +18,7 @@
 <h3>Topic name {entityName}</h3>
 
 <button on:click={addEntity}>Add</button>
+
+<div>
+	<a href="/dashboard/topics">Back to topics</a>
+</div>

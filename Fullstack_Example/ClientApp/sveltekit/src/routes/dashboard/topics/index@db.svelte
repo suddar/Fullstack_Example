@@ -67,6 +67,7 @@
 				<span on:click={() => removeCourse(course.id, course.topicId)}>
 					<i class="fa-solid fa-xmark" />
 				</span>
+				<a href="/dashboard/courses/?id={course.id}">view</a>
 			</li>
 		{/each}
 	</ul>

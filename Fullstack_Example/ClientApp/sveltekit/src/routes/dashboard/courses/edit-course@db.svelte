@@ -22,4 +22,6 @@
 
 <button on:click={editEntity}>Save</button>
 
-<a href="/dashboard/topics">Back to Topics</a>
+<div>
+	<a href="/dashboard/topics">Back to topics</a>
+</div>

@@ -1,6 +1,6 @@
-//import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-auto';
 // Replace the original `adapter-auto` line with this in svelte.config.js
-import adapter from '@sveltejs/adapter-static'
+//import adapter from '@sveltejs/adapter-static'
 
 import preprocess from 'svelte-preprocess';
 
@@ -13,7 +13,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		prerender: {
-			default: true
+			//default: true
 		},
 	}
 };
