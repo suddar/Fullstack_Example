@@ -1,0 +1,3 @@
+import{S as x,i as y,s as C,e as f,b as r,a as s,n as d,d as n}from"./index.08b53efe.js";function b(c){let o,m,l,p,i,u,a;return{c(){o=f("h3"),o.textContent="What's a fragment?",m=r(),l=f("p"),l.textContent=`A fragment is a template-component. By combining fragments, you can compose
+  your own starter template.`,p=r(),i=f("p"),i.textContent=`To see what's included in this template, have a look at the fragments to the
+  left.`,u=r(),a=f("strong"),a.innerHTML="You can remove this guide by deleting the <code>src/pages/guide</code> folder."},m(e,t){s(e,o,t),s(e,m,t),s(e,l,t),s(e,p,t),s(e,i,t),s(e,u,t),s(e,a,t)},p:d,i:d,o:d,d(e){e&&n(o),e&&n(m),e&&n(l),e&&n(p),e&&n(i),e&&n(u),e&&n(a)}}}class _ extends x{constructor(o){super(),y(this,o,null,b,C,{})}}export{_ as default};

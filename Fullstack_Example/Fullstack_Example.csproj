@@ -39,7 +39,7 @@
   <ItemGroup>
     <Folder Include="Architecture\Application\Services\Abstractions\" />
     <Folder Include="Architecture\Infrastructure\" />
-    <Folder Include="ClientApp\" />
+    <Folder Include="ClientApp\spa-routify\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
