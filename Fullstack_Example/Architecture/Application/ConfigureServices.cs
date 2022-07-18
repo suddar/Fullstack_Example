@@ -1,4 +1,6 @@
 ﻿using Fullstack_Example.Application.Services;
+using Fullstack_Example.Architecture.Application.GraphQL.Queries;
+using Fullstack_Example.Architecture.Application.GraphQL.Schemas.Topics;
 using Fullstack_Example.Architecture.Application.MapperProfiles;
 using System.Text.Json.Serialization;
 
@@ -22,6 +24,22 @@ namespace Fullstack_Example.Architecture.Application
 
             services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+            services
+                .AddGraphQLServer()
+                .InitializeOnStartup()
+                .RegisterDbContext<AppDbContext>()
+                .AddProjections()
+                .AddFiltering()
+                .AddSorting()
+
+                // add queries
+                .AddQueryType<TopicQuery>()
+
+                // add mutations
+                .AddMutationType<TopicMutation>()
+                ;
+
             return services;
         }
 

@@ -20,5 +20,10 @@
         "svelte": "^3.48.0",
         "svelte-preprocess": "^4.10.6",
         "vite": "^2.9.9"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "graphql": "^16.5.0",
+        "graphql-request": "^4.3.0"
     }
 }
