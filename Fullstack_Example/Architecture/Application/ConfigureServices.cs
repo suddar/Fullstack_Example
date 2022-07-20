@@ -1,5 +1,4 @@
-﻿using Fullstack_Example.Application.Services;
-using Fullstack_Example.Architecture.Application.GraphQL.Queries;
+﻿using Fullstack_Example.Architecture.Application.GraphQL.Schemas.Courses;
 using Fullstack_Example.Architecture.Application.GraphQL.Schemas.Topics;
 using Fullstack_Example.Architecture.Application.MapperProfiles;
 using System.Text.Json.Serialization;
@@ -35,9 +34,11 @@ namespace Fullstack_Example.Architecture.Application
 
                 // add queries
                 .AddQueryType<TopicQuery>()
+                .AddQueryType<CourseQuery>()
 
                 // add mutations
                 .AddMutationType<TopicMutation>()
+                .AddMutationType<CourseMutation>()
                 ;
 
             return services;

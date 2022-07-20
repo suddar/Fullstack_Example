@@ -24,12 +24,12 @@
 
 <h1>This is topics</h1>
 
-<a href={$url("/dashboard/topics/add-topic?id=:id", { id: 1 })}>add topic</a>
+<a href={$url("/dashboard/topics/add-topic?id=:id", { id: 0 })}>add topic</a>
 
 <ul>
     {#each topics as topic}
         <li>
-            {topic.name}
+            <a href={$url("/dashboard/courses/:id",{id:topic.id})}> {topic.name}</a>
             <a
                 href={$url("/dashboard/topics/edit-topic/:id", {
                     id: topic.id,
