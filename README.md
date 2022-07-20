@@ -25,6 +25,6 @@ This example I made is for learning purposes only. With reference from <a href='
 <h3>Launch the fontend</h3>
 <p>Navigate to Fullstack_Example/ClientApp/sveltekit</p>
 <p>Install dependencies: <b>npm install</b></p>
-<p>Launch client: <b>npm run dev</b</p>
+<p>Launch the client: <b>npm run dev</b</p>
 <p>Access the Client App via link <b>http://localhost:3000</b></p>
  
