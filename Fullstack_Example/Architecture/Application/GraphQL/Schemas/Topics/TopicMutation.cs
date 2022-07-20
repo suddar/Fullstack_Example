@@ -12,18 +12,18 @@ namespace Fullstack_Example.Architecture.Application.GraphQL.Schemas.Topics
             return newTopic;
         }
 
-        public async Task<Topic> UpdateTopic(string name, AppDbContext dbContext)
+        public async Task<Topic> UpdateTopic(int id, string name, AppDbContext dbContext)
         {
-            var newTopic = new Topic { Name = name };
-            await dbContext.AddAsync(newTopic);
+            var topicToUpdate = await dbContext.Topics.FindAsync(id);
+            topicToUpdate.Name = name;
             await dbContext.SaveChangesAsync();
-            return newTopic;
+            return topicToUpdate;
         }
 
         public async Task<Topic?> DeleteTopic(int id, AppDbContext dbContext)
         {
             var topicToDelete = await dbContext.Topics.FindAsync(id);
-            dbContext.Remove(topicToDelete);
+            _ = dbContext.Remove(topicToDelete);
             await dbContext.SaveChangesAsync();
             return default;
         }

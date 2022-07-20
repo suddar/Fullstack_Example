@@ -6,7 +6,7 @@ export const topicsQuery = `{
 }`;
 
 export function addTopicMutation(name) {
-    return `mutation {
+  return `mutation {
         addTopic(name: "${name}") {
           name
           id
@@ -14,16 +14,17 @@ export function addTopicMutation(name) {
       }`;
 }
 
-export function updateTopicMutation(name) {
-    return `mutation {
-        updateTopic(name: "${name}") {
+export function updateTopicMutation(id, name) {
+  return `mutation {
+        updateTopic(id: ${id},name: "${name}") {
+          id
           name
         }
       }`;
 }
 
 export function removeTopicMutation(id) {
-    return `mutation {
+  return `mutation {
         deleteTopic(id: ${id}) {
             name
         }
