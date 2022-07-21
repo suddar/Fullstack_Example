@@ -1,6 +1,6 @@
 ﻿namespace Fullstack_Example.Architecture.Application.GraphQL.Schemas.Topics
 {
-    public class TopicQuery
+    public class Query
     {
         public async Task<Topic?> GetTopic(int id, AppDbContext dbContext)
         {

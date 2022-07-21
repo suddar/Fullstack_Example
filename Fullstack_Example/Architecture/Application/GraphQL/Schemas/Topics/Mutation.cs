@@ -1,8 +1,8 @@
 ﻿using Fullstack_Example.Architecture.Application.DataObjects.TopicDtos;
 
-namespace Fullstack_Example.Architecture.Application.GraphQL.Schemas.Courses
+namespace Fullstack_Example.Architecture.Application.GraphQL.Schemas.Topics
 {
-    public class CourseMutation
+    public class Mutation
     {
         public async Task<Topic> AddTopic(string name, AppDbContext dbContext)
         {

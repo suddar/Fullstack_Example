@@ -1,4 +1,7 @@
-﻿using Fullstack_Example.Architecture.Application.GraphQL.Schemas.Courses;
+﻿using Fullstack_Example.Architecture.Application.GraphQL.CoutnryMutateResolver;
+using Fullstack_Example.Architecture.Application.GraphQL.MutationResolver;
+using Fullstack_Example.Architecture.Application.GraphQL.QueryResolvers;
+using Fullstack_Example.Architecture.Application.GraphQL.QueryTypes;
 using Fullstack_Example.Architecture.Application.GraphQL.Schemas.Topics;
 using Fullstack_Example.Architecture.Application.MapperProfiles;
 using System.Text.Json.Serialization;
@@ -33,12 +36,18 @@ namespace Fullstack_Example.Architecture.Application
                 .AddSorting()
 
                 // add queries
-                .AddQueryType<TopicQuery>()
-                .AddQueryType<CourseQuery>()
+                .AddQueryType<Query>()
+
+                //.AddQueryType(q => q.Name("Query"))
+                //.AddType<TopicTypeExtension>()
+                //.AddType<PetResolver>()
 
                 // add mutations
-                .AddMutationType<TopicMutation>()
-                .AddMutationType<CourseMutation>()
+                .AddMutationType<Mutation>()
+
+                //.AddMutationType(m => m.Name("Mutation"))
+                //.AddType<CountryMutateTypeExtension>()
+                //.AddType<PetsMutateResolver>()
                 ;
 
             return services;
