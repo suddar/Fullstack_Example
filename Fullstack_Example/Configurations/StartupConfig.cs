@@ -43,7 +43,7 @@ namespace Fullstack_Example.Configurations
 
             app.MapControllers();
 
-            app.MapGraphQL();
+            //app.MapGraphQL();
 
             // global cors policy
             app.UseCors(x => x
