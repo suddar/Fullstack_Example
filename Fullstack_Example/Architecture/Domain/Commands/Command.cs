@@ -3,6 +3,6 @@
     public class Command
     {
         public CommandName Name { get; set; }
-        public object? RequestData { get; set; }
+        public object RequestData { get; set; }
     }
 }

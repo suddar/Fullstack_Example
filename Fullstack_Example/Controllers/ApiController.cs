@@ -27,17 +27,18 @@ namespace Fullstack_Example.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public object? Post([FromBody] Command command)
+        public ActionResult Post([FromBody] Command command)
         {
             Console.WriteLine(JsonConvert.SerializeObject(command));
             try
             {
-                return _commandService.Handle(command);
+                //_commandService.Handle(command);
+                return Ok(command);
             }
             catch (Exception e)
             {
                 Console.WriteLine("ERROR " + e);
-                return "ERROR";
+                return NotFound();
             }
         }
     }
