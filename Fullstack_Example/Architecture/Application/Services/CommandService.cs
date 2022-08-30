@@ -3,20 +3,20 @@ using Fullstack_Example.Architecture.Domain.Commands;
 
 namespace Fullstack_Example.Architecture.Application.Services
 {
-    public class CommandService
+    public class CommandService : ICommandService
     {
         private readonly IMediator _mediator;
-        public CommandService(IServiceProvider serviceProvider)
+        public CommandService(IMediator mediator)
         {
-            _mediator = serviceProvider.GetRequiredService<IMediator>();
+            _mediator = mediator;
         }
 
-        internal object Handler(Command command)
+        public object? Handle(Command command)
         {
             return _mediator.Send(GetCommandHandler(command));
         }
 
-        private IRequest<object> GetCommandHandler(Command command)
+        private IRequest<object?> GetCommandHandler(Command command)
         {
             return command.Name switch
             {

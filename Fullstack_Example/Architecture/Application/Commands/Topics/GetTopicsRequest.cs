@@ -11,7 +11,7 @@ namespace Fullstack_Example.Architecture.Application.Commands.Topics
         }
     }
 
-    public class GetTopicsRequestHandler : DbContextRequestHandler, IRequestHandler<GetTopicsRequest, IEnumerable<GetTopicDto>>
+    public class GetTopicsRequestHandler : BaseDbContext, IRequestHandler<GetTopicsRequest, IEnumerable<GetTopicDto>>
     {
         public GetTopicsRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)
         {

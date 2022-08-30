@@ -14,7 +14,7 @@ namespace Fullstack_Example.Architecture.Application.Commands.Topics
         }
     }
 
-    public class GetTopicByIdRequestHandler : DbContextRequestHandler, IRequestHandler<GetTopicsRequest, IEnumerable<GetTopicDto>>
+    public class GetTopicByIdRequestHandler : BaseDbContext, IRequestHandler<GetTopicsRequest, IEnumerable<GetTopicDto>>
     {
         private readonly IMapper _mapper;
         public GetTopicByIdRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)

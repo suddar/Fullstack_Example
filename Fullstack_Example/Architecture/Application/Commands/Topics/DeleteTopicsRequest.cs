@@ -13,7 +13,7 @@ namespace Fullstack_Example.Architecture.Application.Commands.Topics
         }
     }
 
-    public class DeleteTopicsRequestHandler : DbContextRequestHandler, IRequestHandler<DeleteTopicsRequest, DeleteTopicDto>
+    public class DeleteTopicsRequestHandler : BaseDbContext, IRequestHandler<DeleteTopicsRequest, DeleteTopicDto>
     {
         public DeleteTopicsRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)
         {
@@ -21,7 +21,7 @@ namespace Fullstack_Example.Architecture.Application.Commands.Topics
 
         public async Task<DeleteTopicDto> Handle(DeleteTopicsRequest request, CancellationToken cancellationToken)
         {
-            var topicDto = JsonConvert.DeserializeObject<DeleteTopicDto>(request.RequestData);
+            var topicDto = JsonConvert.DeserializeObject<DeleteTopicDto>(request.RequestData.ToString());
             if (topicDto == null) return new DeleteTopicDto { IsSuccess = false };
 
             var entity = await dbContext.Topics.FindAsync(topicDto.Id);

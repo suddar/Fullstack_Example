@@ -10,9 +10,9 @@ namespace Fullstack_Example.Architecture.Application.Commands.Abstractions
             Command = command;
         }
 
-        public string RequestData
+        public object? RequestData
         {
-            get => !string.IsNullOrEmpty(Command.RequestData) ? Command.RequestData : "";
+            get => Command.RequestData;
         }
     }
 }

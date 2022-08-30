@@ -1,9 +1,9 @@
 ﻿namespace Fullstack_Example.Architecture.Application.Commands.Abstractions
 {
-    public abstract class DbContextRequestHandler
+    public abstract class BaseDbContext
     {
         protected readonly AppDbContext dbContext;
-        public DbContextRequestHandler(IServiceProvider serviceProvider)
+        public BaseDbContext(IServiceProvider serviceProvider)
         {
             dbContext = serviceProvider.GetRequiredService<AppDbContext>();
         }

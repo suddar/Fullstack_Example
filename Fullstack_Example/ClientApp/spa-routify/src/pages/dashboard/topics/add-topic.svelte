@@ -1,17 +1,37 @@
 <script>
-    import { addTopicMutation } from "../../../schemas/topics-schema";
-    import { query } from "../../../services/graphql-service";
+    import { Command, CommandName } from "../../../models/command";
+    import CommandService from "../../../services/command-service";
 
-    let name = "";
+    let commandService = new CommandService();
+    let topicName = "";
 
     async function addTopic() {
-        let response = await query(addTopicMutation(name));
-        console.log(response);
+        let command = new Command();
+        command.commandName = CommandName.TOPIC_CREATE;
+        const topic = { name: topicName };
+        command.requestData = JSON.stringify(topic);
+
+        // let topic = { name: topicName };
+        // let command = {
+        //     name: 0,
+        //     requestData: JSON.stringify(topic),
+        // };
+
+        // const topic = {
+        //     name: "topic test 666555555555",
+        // };
+
+        // const command = {
+        //     name: 0,
+        //     requestData: topic,
+        // };
+
+        var res = commandService.send(command);
+        console.log(res);
     }
-    
 </script>
 
-<input bind:value={name} placeholder="enter topic name" />
-<p>topic {name || ""}!</p>
+<input bind:value={topicName} placeholder="enter topic name" />
+<p>topic {topicName || ""}!</p>
 
 <button on:click={addTopic}>Add topic</button>

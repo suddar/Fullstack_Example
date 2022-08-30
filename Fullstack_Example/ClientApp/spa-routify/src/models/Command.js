@@ -1,9 +1,9 @@
 export class Command {
-    CommandName;
-    RequestData;
+    commandName;
+    requestData;
 }
 
-const CommandName = {
+export const CommandName = {
     //#region topic
     TOPIC_CREATE: 0,
     TOPIC_GET_MULTI: 1,

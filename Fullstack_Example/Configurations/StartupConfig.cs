@@ -15,8 +15,6 @@ namespace Fullstack_Example.Configurations
             services.AddSwaggerGen();
             services.AddCors();
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
-
             return services;
         }
 
@@ -32,12 +30,12 @@ namespace Fullstack_Example.Configurations
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
-/*            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(app.Environment.ContentRootPath, "ClientApp/sveltekit/build")),
-                RequestPath = ""
-            });*/
+            /*            app.UseStaticFiles(new StaticFileOptions
+                        {
+                            FileProvider = new PhysicalFileProvider(
+                                Path.Combine(app.Environment.ContentRootPath, "ClientApp/sveltekit/build")),
+                            RequestPath = ""
+                        });*/
 
             app.UseAuthorization();
 

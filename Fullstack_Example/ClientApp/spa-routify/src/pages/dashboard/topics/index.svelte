@@ -2,12 +2,6 @@
     import { url } from "@roxi/routify";
     import { onMount } from "svelte";
 
-    import {
-        removeTopicMutation,
-        topicsQuery,
-    } from "../../../schemas/topics-schema";
-    import { query } from "../../../services/graphql-service";
-
     let topics = [];
 
     onMount(async () => {
