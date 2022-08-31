@@ -9,12 +9,12 @@ namespace Fullstack_Example.Architecture.Infrastructure
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<Course> Courses { get; init; }
-        public DbSet<Enrollment> Enrollments { get; init; }
-        public DbSet<Learner> Learners { get; init; }
-        public DbSet<Skill> Skills { get; init; }
-        public DbSet<Teacher> Teachers { get; init; }
-        public DbSet<Topic> Topics { get; init; }
+        public DbSet<Course> Courses => Set<Course>();
+        public DbSet<Enrollment> Enrollments => Set<Enrollment>();
+        public DbSet<Learner> Learners => Set<Learner>();
+        public DbSet<Skill> Skills => Set<Skill>();
+        public DbSet<Teacher> Teachers => Set<Teacher>();
+        public DbSet<Topic> Topics => Set<Topic>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -22,6 +22,8 @@ namespace Fullstack_Example.Architecture.Infrastructure
             foreach (var entityType in builder.Model.GetEntityTypes())
             {
                 var tableName = entityType.GetTableName();
+                if (tableName == null) return;
+
                 if (tableName.StartsWith("AspNet"))
                 {
                     entityType.SetTableName(tableName.Substring(6));

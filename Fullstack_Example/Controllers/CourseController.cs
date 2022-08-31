@@ -16,7 +16,7 @@ namespace Fullstack_Example.Controllers
         public async Task<CreateResult<Course>?> CreateEntity([FromBody] CreateCourseDto entityToCreateInput)
         {
             var entityToCreate = _mapper.Map<Course>(entityToCreateInput);
-            await _entityService.Add(entityToCreate);
+            await _entityService.AddAsync(entityToCreate);
             await _dbContext.SaveChangesAsync();
             return new CreateResult<Course>(entityToCreate);
         }
@@ -55,7 +55,7 @@ namespace Fullstack_Example.Controllers
         public async Task<UpdateResult<Course>?> UpdateEntity([FromBody] UpdateCourseDto entityToUpdateInput)
         {
             var entityToUpdate = await _dbContext.FindAsync<Course>(entityToUpdateInput.Id);
-            if (entityToUpdate == null) return null;
+            if (entityToUpdate == null || entityToUpdateInput.Name == null) return null;
 
             entityToUpdate.Name = entityToUpdateInput.Name;
             _dbContext.Update(entityToUpdate);

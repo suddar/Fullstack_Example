@@ -2,11 +2,22 @@
     import { url } from "@roxi/routify";
     import { onMount } from "svelte";
 
+    import { Command, CommandNames } from "../../../models/command";
+    import CommandService from "../../../services/command-service";
+
+    let commandService = new CommandService();
     let topics = [];
 
+    async function getTopics() {
+        let command = new Command();
+        command.name = CommandNames.GetTopics;
+        var res = commandService.send(command);
+        console.log(res);
+    }
+
     onMount(async () => {
-        let response = await query(topicsQuery);
-        topics = response.topics;
+        await getTopics();
+        //topics = response.topics;
     });
 
     async function removeTopic(id) {
@@ -23,7 +34,9 @@
 <ul>
     {#each topics as topic}
         <li>
-            <a href={$url("/dashboard/courses/:id",{id:topic.id})}> {topic.name}</a>
+            <a href={$url("/dashboard/courses/:id", { id: topic.id })}>
+                {topic.name}</a
+            >
             <a
                 href={$url("/dashboard/topics/edit-topic/:id", {
                     id: topic.id,

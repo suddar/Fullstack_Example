@@ -1,5 +1,4 @@
 using Fullstack_Example.Architecture.Application;
-using Fullstack_Example.Architecture.Infrastructure;
 using Fullstack_Example.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);

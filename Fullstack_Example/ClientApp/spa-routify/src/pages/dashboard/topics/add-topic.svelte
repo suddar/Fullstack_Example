@@ -1,5 +1,5 @@
 <script>
-    import { Command, CommandName } from "../../../models/command";
+    import { Command, CommandNames } from "../../../models/command";
     import CommandService from "../../../services/command-service";
 
     let commandService = new CommandService();
@@ -7,24 +7,10 @@
 
     async function addTopic() {
         let command = new Command();
-        command.commandName = CommandName.TOPIC_CREATE;
+        command.name = CommandNames.CreateTopic;
+
         const topic = { name: topicName };
-        command.requestData = JSON.stringify(topic);
-
-        // let topic = { name: topicName };
-        // let command = {
-        //     name: 0,
-        //     requestData: JSON.stringify(topic),
-        // };
-
-        // const topic = {
-        //     name: "topic test 666555555555",
-        // };
-
-        // const command = {
-        //     name: 0,
-        //     requestData: topic,
-        // };
+        command.requestData = topic;
 
         var res = commandService.send(command);
         console.log(res);

@@ -11,7 +11,8 @@ namespace Fullstack_Example.Architecture.Application
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(typeof(MyProfile));
 
-            services.AddTransient<ICommandService, CommandService>();
+            services.AddScoped<IEntityService, EntityService>();
+            services.AddScoped<ICommandService, CommandService>();
             return services;
         }
     }

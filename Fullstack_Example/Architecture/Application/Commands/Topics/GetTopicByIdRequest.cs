@@ -4,30 +4,39 @@ using Fullstack_Example.Architecture.Application.DataObjects.CourseDtos;
 using Fullstack_Example.Architecture.Application.DataObjects.TopicDtos;
 using Fullstack_Example.Architecture.Domain.Commands;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Fullstack_Example.Architecture.Application.Commands.Topics
 {
-    public class GetTopicByIdRequest : BaseRequest, IRequest<IEnumerable<GetTopicDto>>
+    public class GetTopicByIdRequest : BaseRequest, IRequest<GetTopicDto?>
     {
         public GetTopicByIdRequest(Command command) : base(command)
         {
         }
     }
 
-    public class GetTopicByIdRequestHandler : BaseDbContext, IRequestHandler<GetTopicsRequest, IEnumerable<GetTopicDto>>
+    public class GetTopicByIdRequestHandler : BaseDbContext, IRequestHandler<GetTopicByIdRequest, GetTopicDto?>
     {
-        private readonly IMapper _mapper;
         public GetTopicByIdRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)
         {
-            _mapper = serviceProvider.GetRequiredService<IMapper>();
         }
 
-        public async Task<IEnumerable<GetTopicDto>> Handle(GetTopicsRequest request, CancellationToken cancellationToken)
+        public async Task<GetTopicDto?> Handle(GetTopicByIdRequest request, CancellationToken cancellationToken)
         {
-            var entities = await dbContext.Set<Topic>()
-            .ProjectTo<GetTopicDto>(_mapper.ConfigurationProvider)
-            .ToListAsync();
-            return entities;
+            var requestData = request?.RequestData?.ToString();
+            if (requestData == null) return default;
+
+            var entityDto = JsonConvert.DeserializeObject<GetTopicDto>(requestData);
+            if (entityDto == null) return default;
+
+            var entity = await dbContext
+                .Set<Topic>()
+                .Where(x => x.Id == entityDto.Id)
+                .Include(_ => _.Courses)
+                .ProjectTo<GetTopicDto>(mapper.ConfigurationProvider)
+                .FirstAsync();
+
+            return entity;
         }
     }
 }

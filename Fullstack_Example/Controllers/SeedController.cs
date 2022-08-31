@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fullstack_Example.Controllers
 {
@@ -14,6 +15,12 @@ namespace Fullstack_Example.Controllers
         [HttpGet("SeedOrReseed")]
         public async Task SeedOrReseed()
         {
+            foreach (var item in _dbContext.Topics)
+                _dbContext.Topics.Remove(item);
+
+            foreach (var item in _dbContext.Courses)
+                _dbContext.Courses.Remove(item);
+
             await Seed1();
             await Seed2();
             await Seed3();
@@ -28,14 +35,20 @@ namespace Fullstack_Example.Controllers
             var course4 = new Course { Name = "Math course 4", Topic = topic };
             var course5 = new Course { Name = "Math course 5", Topic = topic };
 
-            topic.Courses.Add(course1);
-            topic.Courses.Add(course2);
-            topic.Courses.Add(course3);
-            topic.Courses.Add(course4);
-            topic.Courses.Add(course5);
+            if (topic.Courses != null)
+            {
+                topic.Courses.Add(course1);
+                topic.Courses.Add(course2);
+                topic.Courses.Add(course3);
+                topic.Courses.Add(course4);
+                topic.Courses.Add(course5);
+            }
 
-            await _dbContext.AddAsync(topic);
-            await _dbContext.SaveChangesAsync();
+            if (topic != null)
+            {
+                await _dbContext.AddAsync(topic);
+                await _dbContext.SaveChangesAsync();
+            }
         }
 
         private async Task Seed2()
@@ -45,9 +58,12 @@ namespace Fullstack_Example.Controllers
             var course2 = new Course { Name = "Art course 2", Topic = topic };
             var course3 = new Course { Name = "Art course 3", Topic = topic };
 
-            topic.Courses.Add(course1);
-            topic.Courses.Add(course2);
-            topic.Courses.Add(course3);
+            if (topic.Courses != null)
+            {
+                topic.Courses.Add(course1);
+                topic.Courses.Add(course2);
+                topic.Courses.Add(course3);
+            }
 
             await _dbContext.AddAsync(topic);
             await _dbContext.SaveChangesAsync();
@@ -63,10 +79,13 @@ namespace Fullstack_Example.Controllers
             var course3 = new Course { Name = "English course 3", Topic = topic };
             var course4 = new Course { Name = "English course 4", Topic = topic };
 
-            topic.Courses.Add(course1);
-            topic.Courses.Add(course2);
-            topic.Courses.Add(course3);
-            topic.Courses.Add(course4);
+            if (topic.Courses != null)
+            {
+                topic.Courses.Add(course1);
+                topic.Courses.Add(course2);
+                topic.Courses.Add(course3);
+                topic.Courses.Add(course4);
+            }
 
             await _dbContext.SaveChangesAsync();
         }

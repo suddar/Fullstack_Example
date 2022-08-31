@@ -2,7 +2,7 @@
 {
     public interface IEntityService
     {
-        Task<TEntity?> Add<TEntity>(TEntity entity);
+        Task<TEntity?> AddAsync<TEntity>(TEntity entity);
         Task<bool> Delete<TEntity>(int id) where TEntity : AuditableEntity;
         Task<IEnumerable<TEntity>> GetAll<TEntity>() where TEntity : AuditableEntity;
         Task<IEnumerable<TEntityDto>> GetAllTo<TEntity, TEntityDto>() where TEntity : AuditableEntity;

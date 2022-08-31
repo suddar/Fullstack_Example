@@ -17,8 +17,7 @@ namespace Fullstack_Example.Controllers
         public async Task<CreateResult<Topic>?> CreateEntity([FromBody] CreateTopicDto entityToCreateInput)
         {
             var entityToCreate = _mapper.Map<Topic>(entityToCreateInput);
-            await _entityService.Add(entityToCreate);
-            await _dbContext.SaveChangesAsync();
+            await _entityService.AddAsync(entityToCreate);
             return new CreateResult<Topic>(entityToCreate);
         }
 
@@ -45,7 +44,8 @@ namespace Fullstack_Example.Controllers
         [HttpGet("{id}")]
         public async Task<GetResult<GetTopicDto>?> GetEntityById(int id)
         {
-            var entity = await _dbContext.Set<Topic>()
+            var entity = await _dbContext
+                .Set<Topic>()
                 .Where(x => x.Id == id)
                 .Include(_ => _.Courses)
                 .ProjectTo<GetTopicDto>(_mapper.ConfigurationProvider)
@@ -58,8 +58,9 @@ namespace Fullstack_Example.Controllers
         public async Task<UpdateResult<Topic>?> UpdateEntity([FromBody] CreateTopicDto entityToUpdateInput)
         {
             Console.WriteLine($"UPDATE ID: {entityToUpdateInput.Id}, NAME {entityToUpdateInput.Name}");
+
             var entityToUpdate = await _dbContext.FindAsync<Topic>(entityToUpdateInput.Id);
-            if (entityToUpdate == null) return default;
+            if (entityToUpdate == null || entityToUpdateInput.Name == null) return default;
 
             entityToUpdate.Name = entityToUpdateInput.Name;
             _dbContext.Update(entityToUpdate);

@@ -3,6 +3,6 @@
     public class Course:AuditableEntity
     {
         public int TopicId { get; set; }
-        public Topic Topic { get; set; }
+        public Topic? Topic { get; set; }
     }
 }

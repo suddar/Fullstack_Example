@@ -11,18 +11,17 @@ namespace Fullstack_Example.Architecture.Infrastructure
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connectionString));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
             //services.AddDatabaseDeveloperPageExceptionFilter();
 
-/*            services
-                .AddIdentity<AppUser>(options =>
-                {
-                    // options are set here
-                })
-                .AddRoles<UserRole>()
-                .AddEntityFrameworkStores<AppDbContext>();*/
+            /*            services
+                            .AddIdentity<AppUser>(options =>
+                            {
+                                // options are set here
+                            })
+                            .AddRoles<UserRole>()
+                            .AddEntityFrameworkStores<AppDbContext>();*/
 
             return services;
         }

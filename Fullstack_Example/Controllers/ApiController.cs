@@ -1,7 +1,9 @@
-﻿using Fullstack_Example.Architecture.Application.Services;
+﻿using Fullstack_Example.Architecture.Application.Commands.Topics;
+using Fullstack_Example.Architecture.Application.Services;
 using Fullstack_Example.Architecture.Domain.Commands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 
@@ -12,34 +14,25 @@ namespace Fullstack_Example.Controllers
     public class ApiController : ControllerBase
     {
         private readonly ICommandService _commandService;
-        private readonly AppDbContext dbContext;
+        private readonly AppDbContext _dbContext;
         public ApiController(ICommandService handlerService, AppDbContext dbContext)
         {
             _commandService = handlerService;
-            this.dbContext = dbContext;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
         public IEnumerable<Topic> Get()
         {
-            return dbContext.Topics.ToList();
+            if (_dbContext.Topics == null) return Enumerable.Empty<Topic>();
+            return _dbContext.Topics.ToList();
         }
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Post([FromBody] Command command)
         {
-            Console.WriteLine(JsonConvert.SerializeObject(command));
-            try
-            {
-                //_commandService.Handle(command);
-                return Ok(command);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("ERROR " + e);
-                return NotFound();
-            }
+            return Ok(_commandService.Handle(command));
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Fullstack_Example.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<TEntity?> Add<TEntity>(TEntity entity)
+        public async Task<TEntity?> AddAsync<TEntity>(TEntity entity)
         {
             if (entity == null) return default;
             _ = await _dbContext.AddAsync(entity);
