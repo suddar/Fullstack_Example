@@ -4,7 +4,7 @@ This example I made is for learning purposes only. With reference from <a href='
 
 <h1>Technologies</h1>
 <ul>
-<li>Backend API<a href='https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-6.0'>ASP.Net Core</a> </li>
+<li>Backend API <a href='https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-6.0'>ASP.Net Core</a> </li>
 <li>Fontend <a href='https://www.routify.dev/'>Svelte + routify</a></li>
 <li>Database <a href='https://docs.microsoft.com/en-us/ef/core/'>Entity Framework Core 6</a></li>
 <li><a href='https://automapper.org/'>AutoMapper</a></li>
