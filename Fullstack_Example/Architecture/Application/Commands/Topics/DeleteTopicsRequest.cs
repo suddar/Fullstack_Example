@@ -2,20 +2,20 @@
 
 namespace Fullstack_Example.Architecture.Application.Commands.Topics
 {
-    public class DeleteTopicsRequest : BaseRequest, IRequest<DeleteTopicDto?>
+    public class DeleteTopicsRequest : BaseRequest, IRequest<object?>
     {
         public DeleteTopicsRequest(Command command) : base(command)
         {
         }
     }
 
-    public class DeleteTopicsRequestHandler : BaseDbContext, IRequestHandler<DeleteTopicsRequest, DeleteTopicDto?>
+    public class DeleteTopicsRequestHandler : BaseDbContext, IRequestHandler<DeleteTopicsRequest, object?>
     {
         public DeleteTopicsRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
-        public async Task<DeleteTopicDto?> Handle(DeleteTopicsRequest request, CancellationToken cancellationToken)
+        public async Task<object?> Handle(DeleteTopicsRequest request, CancellationToken cancellationToken)
         {
             var requestData = request?.RequestData?.ToString();
             if (requestData == null) return default;

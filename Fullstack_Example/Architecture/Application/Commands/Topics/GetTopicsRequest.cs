@@ -1,19 +1,19 @@
 ﻿namespace Fullstack_Example.Architecture.Application.Commands.Topics
 {
-    public class GetTopicsRequest : BaseRequest, IRequest<IEnumerable<GetTopicDto>?>
+    public class GetTopicsRequest : BaseRequest, IRequest<object?>
     {
         public GetTopicsRequest(Command command) : base(command)
         {
         }
     }
 
-    public class GetTopicsRequestHandler : BaseDbContext, IRequestHandler<GetTopicsRequest, IEnumerable<GetTopicDto>?>
+    public class GetTopicsRequestHandler : BaseDbContext, IRequestHandler<GetTopicsRequest, object?>
     {
         public GetTopicsRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
-        public async Task<IEnumerable<GetTopicDto>?> Handle(GetTopicsRequest request, CancellationToken cancellationToken)
+        public async Task<object?> Handle(GetTopicsRequest request, CancellationToken cancellationToken)
         {
             var entities = await dbContext
                 .Set<Topic>()

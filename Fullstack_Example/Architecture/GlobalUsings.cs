@@ -9,6 +9,7 @@ global using Microsoft.EntityFrameworkCore;
 
 global using Fullstack_Example.Architecture.Application.DataObjects.TopicDtos;
 global using Fullstack_Example.Architecture.Domain.Commands;
+global using Fullstack_Example.Architecture.Domain.Entities.Authentication;
 
 global using MediatR;
 

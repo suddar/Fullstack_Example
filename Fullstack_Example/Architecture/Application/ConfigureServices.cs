@@ -13,6 +13,7 @@ namespace Fullstack_Example.Architecture.Application
 
             services.AddScoped<IEntityService, EntityService>();
             services.AddScoped<ICommandService, CommandService>();
+
             return services;
         }
     }

@@ -8,32 +8,31 @@ using Newtonsoft.Json;
 
 namespace Fullstack_Example.Architecture.Application.Commands.Topics
 {
-    public class GetTopicByIdRequest : BaseRequest, IRequest<object?>
+    public class GetCourseByIdRequest : BaseRequest, IRequest<object?>
     {
-        public GetTopicByIdRequest(Command command) : base(command)
+        public GetCourseByIdRequest(Command command) : base(command)
         {
         }
     }
 
-    public class GetTopicByIdRequestHandler : BaseDbContext, IRequestHandler<GetTopicByIdRequest, object?>
+    public class GetCourseByIdRequestHandler : BaseDbContext, IRequestHandler<GetCourseByIdRequest, object?>
     {
-        public GetTopicByIdRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)
+        public GetCourseByIdRequestHandler(IServiceProvider serviceProvider) : base(serviceProvider)
         {
         }
 
-        public async Task<object?> Handle(GetTopicByIdRequest request, CancellationToken cancellationToken)
+        public async Task<object?> Handle(GetCourseByIdRequest request, CancellationToken cancellationToken)
         {
             var requestData = request?.RequestData?.ToString();
             if (requestData == null) return default;
 
-            var entityDto = JsonConvert.DeserializeObject<GetTopicDto>(requestData);
+            var entityDto = JsonConvert.DeserializeObject<GetCourseDto>(requestData);
             if (entityDto == null) return default;
 
             var entity = await dbContext
-                .Set<Topic>()
+                .Set<Course>()
                 .Where(x => x.Id == entityDto.Id)
-                .Include(_ => _.Courses)
-                .ProjectTo<GetTopicDto>(mapper.ConfigurationProvider)
+                .ProjectTo<GetCourseDto>(mapper.ConfigurationProvider)
                 .FirstAsync();
 
             return entity;

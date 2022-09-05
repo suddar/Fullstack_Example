@@ -1,7 +1,11 @@
 ﻿using Fullstack_Example.Architecture.Infrastructure;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 namespace Fullstack_Example.Configurations
 {
@@ -14,6 +18,34 @@ namespace Fullstack_Example.Configurations
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddCors();
+
+            // For Identity
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+
+            // Adding Authentication
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+
+            // Adding Jwt Bearer
+            .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = configuration["JWT:ValidAudience"],
+                    ValidIssuer = configuration["JWT:ValidIssuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
+                };
+            });
 
             return services;
         }

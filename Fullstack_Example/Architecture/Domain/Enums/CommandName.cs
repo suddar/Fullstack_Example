@@ -1,4 +1,6 @@
-﻿namespace Fullstack_Example.Architecture.Domain.Enums
+﻿using Fullstack_Example.Architecture.Application.Commands.Topics;
+
+namespace Fullstack_Example.Architecture.Domain.Enums
 {
     public enum CommandName
     {
@@ -16,5 +18,11 @@
         public const string GetTopics = "GetTopics";
         public const string UpdateTopic = "UpdateTopic";
         public const string DeleteTopic = "DeleteTopic";
+
+        public const string CreateCourse = "CreateCourse";
+        public const string GetCourseById = "GetCourseById";
+        public const string GetCourses = "GetCourses";
+        public const string UpdateCourse = "UpdateCourse";
+        public const string DeleteCourse = "DeleteCourse";
     }
 }

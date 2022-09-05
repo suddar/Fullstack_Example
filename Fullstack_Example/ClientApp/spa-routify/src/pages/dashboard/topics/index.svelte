@@ -8,23 +8,28 @@
     let commandService = new CommandService();
     let topics = [];
 
+    onMount(async () => {
+        await getTopics();
+    });
+
     async function getTopics() {
         let command = new Command();
         command.name = CommandNames.GetTopics;
-        var res = commandService.send(command);
-        console.log(res);
+        topics = await commandService.send(command);
     }
-
-    onMount(async () => {
-        await getTopics();
-        //topics = response.topics;
-    });
 
     async function removeTopic(id) {
-        await query(removeTopicMutation(id));
-        let response = await query(topicsQuery);
-        topics = response.topics;
+        let command = new Command();
+        command.name = CommandNames.DeleteTopic;
+
+        const topic = { id: id };
+        command.requestData = topic;
+
+        await commandService.send(command);
+
+        await getTopics();
     }
+
 </script>
 
 <h1>This is topics</h1>
@@ -34,7 +39,7 @@
 <ul>
     {#each topics as topic}
         <li>
-            <a href={$url("/dashboard/courses/:id", { id: topic.id })}>
+            <a href={$url("/dashboard/courses/:topicId", { topicId: topic.id })}>
                 {topic.name}</a
             >
             <a

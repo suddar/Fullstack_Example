@@ -9,6 +9,7 @@ using NuGet.Protocol;
 
 namespace Fullstack_Example.Controllers
 {
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ApiController : ControllerBase

@@ -9,4 +9,6 @@ export const CommandNames = {
     GetTopics: "GetTopics",
     UpdateTopic: "UpdateTopic",
     DeleteTopic: "DeleteTopic",
+
+    UpdateCourse: "UpdateCourse",
 }

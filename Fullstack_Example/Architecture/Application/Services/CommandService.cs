@@ -18,7 +18,7 @@ namespace Fullstack_Example.Architecture.Application.Services
             return response.Result;
         }
 
-        private static IRequest<object?> GetCommandHandler(Command command)
+        private IRequest<object?> GetCommandHandler(Command command)
         {
             return command.Name switch
             {
@@ -29,6 +29,15 @@ namespace Fullstack_Example.Architecture.Application.Services
                 CommandNames.UpdateTopic => new UpdateTopicRequest(command),
                 CommandNames.DeleteTopic => new DeleteTopicsRequest(command),
                 #endregion
+
+                #region Course commands
+                CommandNames.CreateCourse => new CreateCourseRequest(command),
+                CommandNames.GetCourses => new GetCoursesRequest(command),
+                CommandNames.GetCourseById => new GetCourseByIdRequest(command),
+                CommandNames.UpdateCourse => new UpdateCourseRequest(command),
+                CommandNames.DeleteCourse => new DeleteCourseRequest(command),
+                #endregion
+
                 _ => throw new NotImplementedException(),
             };
         }
