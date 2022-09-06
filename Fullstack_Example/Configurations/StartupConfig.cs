@@ -39,8 +39,8 @@ namespace Fullstack_Example.Configurations
                 options.RequireHttpsMetadata = false;
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
                     ValidAudience = configuration["JWT:ValidAudience"],
                     ValidIssuer = configuration["JWT:ValidIssuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
@@ -69,6 +69,7 @@ namespace Fullstack_Example.Configurations
                             RequestPath = ""
                         });*/
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();

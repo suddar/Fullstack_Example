@@ -40,4 +40,6 @@
         </li>
     {/each}
 </ul>
-<p>This is course detail</p>
+<p>This is course detail, topic id {topicId}</p>
+
+<a href={$url("/dashboard/courses/add-course/:id", {id: topicId, })}> Create course</a>

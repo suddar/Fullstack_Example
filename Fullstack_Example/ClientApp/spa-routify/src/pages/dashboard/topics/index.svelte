@@ -9,6 +9,7 @@
     let topics = [];
 
     onMount(async () => {
+        //let lastname = sessionStorage.getItem("key");
         await getTopics();
     });
 

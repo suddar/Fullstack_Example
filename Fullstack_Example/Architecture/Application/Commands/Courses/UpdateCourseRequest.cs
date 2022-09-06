@@ -32,6 +32,7 @@ namespace Fullstack_Example.Architecture.Application.Commands.Topics
             if (entity == null || entity.Name == null) return default;
 
             entity.Name = entityDto.Name;
+            entity.Content = entityDto.Content;
             dbContext.Update(entity);
 
             await dbContext.SaveChangesAsync(cancellationToken);

@@ -9,7 +9,6 @@ using NuGet.Protocol;
 
 namespace Fullstack_Example.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class ApiController : ControllerBase
@@ -22,13 +21,14 @@ namespace Fullstack_Example.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet]
-        public IEnumerable<Topic> Get()
-        {
-            if (_dbContext.Topics == null) return Enumerable.Empty<Topic>();
-            return _dbContext.Topics.ToList();
-        }
+        //[HttpGet]
+        //public IEnumerable<Topic> Get()
+        //{
+        //    if (_dbContext.Topics == null) return Enumerable.Empty<Topic>();
+        //    return _dbContext.Topics.ToList();
+        //}
 
+        [Authorize]
         [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult Post([FromBody] Command command)

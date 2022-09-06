@@ -5,10 +5,32 @@ export default class CommandService {
 
     async send(command) {
         try {
-            let response = await axios.post(this.baseUrl, command);
+            let token = sessionStorage.getItem("token");
+            let authorization = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            let response = await axios.post(this.baseUrl, command, authorization);
             return response.data
         } catch (error) {
-          return undefined;   
+            return undefined;
         }
+    }
+}
+
+export async function sendCommand(command) {
+    try {
+        let baseUrl = "https://localhost:5555/api";
+        let token = sessionStorage.getItem("token");
+        let authorization = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+        let response = await axios.post(baseUrl, command, authorization);
+        return response.data
+    } catch (error) {
+        return undefined;
     }
 }

@@ -32,6 +32,8 @@ namespace Fullstack_Example.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
+            Console.WriteLine(model.Username);
+            Console.WriteLine(model.Password);
             var user = await _userManager.FindByNameAsync(model.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
@@ -56,7 +58,7 @@ namespace Fullstack_Example.Controllers
                     expiration = token.ValidTo
                 });
             }
-            return Unauthorized();
+            return Unauthorized("The user name or password are incorrect");
         }
 
         [HttpPost]

@@ -4,8 +4,8 @@
 
 <nav>
     <ul>
-        <li><a href={$url("./topics")}>topics </a></li>
-        <li><a href={$url("./courses")}>courses </a></li>
+        <li><a href={$url("./topics")}>Topics </a></li>
+        <li><a href={$url("./users")}>Users </a></li>
     </ul>
 </nav>
 <!-- routify:options preload="proximity" -->
