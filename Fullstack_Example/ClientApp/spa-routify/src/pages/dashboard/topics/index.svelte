@@ -1,11 +1,9 @@
 <script>
     import { url } from "@roxi/routify";
     import { onMount } from "svelte";
-
     import { Command, CommandNames } from "../../../models/command";
-    import CommandService from "../../../services/command-service";
+    import { sendCommand } from "../../../services/command-service";
 
-    let commandService = new CommandService();
     let topics = [];
 
     onMount(async () => {
@@ -15,7 +13,7 @@
     async function getTopics() {
         let command = new Command();
         command.name = CommandNames.GetTopics;
-        topics = await commandService.send(command);
+        topics = await sendCommand(command);
     }
 
     async function removeTopic(id) {
@@ -25,7 +23,7 @@
         const data = { id: id };
         command.requestData = data;
 
-        await commandService.send(command);
+        await sendCommand(command);
         await getTopics();
     }
 </script>
@@ -47,7 +45,7 @@
             >
             <a
                 class="edit-icon"
-                href={$url("/dashboard/topics/edit-topic/:id", {
+                href={$url("/dashboard/topics/edit-topic", {
                     id: topic.id,
                 })}
             >
