@@ -9,7 +9,6 @@
     let topics = [];
 
     onMount(async () => {
-        //let lastname = sessionStorage.getItem("key");
         await getTopics();
     });
 
@@ -23,27 +22,31 @@
         let command = new Command();
         command.name = CommandNames.DeleteTopic;
 
-        const topic = { id: id };
-        command.requestData = topic;
+        const data = { id: id };
+        command.requestData = data;
 
         await commandService.send(command);
-
         await getTopics();
     }
-
 </script>
 
-<h1>This is topics</h1>
+<div>
+    <h3>Topics</h3>
+    <hr />
+    <a href={$url("/dashboard/topics/add-topic")}>+Add topic</a>
+</div>
 
-<a href={$url("/dashboard/topics/add-topic?id=:id", { id: 0 })}>add topic</a>
-
-<ul>
+<div>
     {#each topics as topic}
-        <li>
-            <a href={$url("/dashboard/courses/:topicId", { topicId: topic.id })}>
-                {topic.name}</a
+        <div class="topic-item">
+            <a
+                href={$url("/dashboard/courses/view-courses", {
+                    topicId: topic.id,
+                    topicName: topic.name,
+                })}>{topic.name}</a
             >
             <a
+                class="edit-icon"
                 href={$url("/dashboard/topics/edit-topic/:id", {
                     id: topic.id,
                 })}
@@ -51,8 +54,22 @@
                 <i class="fa-solid fa-pen-to-square" />
             </a>
             <span on:click={() => removeTopic(topic.id)}>
-                <i style="cursor:pointer ;" class="fa-solid fa-xmark" />
+                <i class="fa-solid fa-xmark" />
             </span>
-        </li>
+        </div>
     {/each}
-</ul>
+</div>
+
+<style>
+    .topic-item a {
+        padding-left: 6px;
+    }
+    .topic-item span {
+        padding-left: 6px;
+        font-size: small;
+        cursor: pointer;
+    }
+    .edit-icon {
+        font-size: small;
+    }
+</style>

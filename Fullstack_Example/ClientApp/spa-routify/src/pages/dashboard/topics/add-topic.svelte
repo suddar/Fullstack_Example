@@ -1,8 +1,7 @@
 <script>
     import { Command, CommandNames } from "../../../models/command";
-    import CommandService from "../../../services/command-service";
+    import { sendCommand } from "../../../services/command-service";
 
-    let commandService = new CommandService();
     let topicName = "";
 
     async function addTopic() {
@@ -12,7 +11,7 @@
         const topic = { name: topicName };
         command.requestData = topic;
 
-        var res = commandService.send(command);
+        var res = sendCommand(command);
         console.log(res);
     }
 </script>

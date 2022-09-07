@@ -5,10 +5,10 @@
     //console.log($url()); //'recipes/cakes/cupcakes'
 </script>
 
-<nav>
+<nav class="topnav">
     <a href={$url("./")}> Home </a>
-    <a href={$url("./dashboard")}> dashboard </a>
-    <a href={$url("./about")}> about </a>
+    <a href={$url("./dashboard")}> Dashboard </a>
+    <a href={$url("./about")}> About </a>
 </nav>
 <!-- routify:options preload="proximity" -->
 <slot />

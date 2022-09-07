@@ -21,13 +21,6 @@ namespace Fullstack_Example.Controllers
             _dbContext = dbContext;
         }
 
-        //[HttpGet]
-        //public IEnumerable<Topic> Get()
-        //{
-        //    if (_dbContext.Topics == null) return Enumerable.Empty<Topic>();
-        //    return _dbContext.Topics.ToList();
-        //}
-
         [Authorize]
         [HttpPost]
         //[ValidateAntiForgeryToken]

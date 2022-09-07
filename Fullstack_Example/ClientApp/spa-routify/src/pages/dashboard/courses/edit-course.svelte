@@ -1,10 +1,13 @@
 <script>
+    import { params } from "@roxi/routify";
     import { onMount } from "svelte";
-    import { Command, CommandNames } from "../../../../models/command";
-    import CommandService from "../../../../services/command-service";
+    import { Command, CommandNames } from "../../../models/command";
+    import CommandService, {
+        sendCommand,
+    } from "../../../services/command-service";
 
-    export let id;
-    export let name;
+    export let id = $params.id;
+    export let name = $params.name;
 
     let courseName = "";
     let courseContent = "";
@@ -14,12 +17,12 @@
         let command = new Command();
         command.name = CommandNames.GetCourseById;
 
-        const data = { id: id.test };
+        const data = { id: id };
         command.requestData = data;
 
-        let res = await commandService.send(command);
+        let res = await sendCommand(command);
 
-        if(res!=undefined){
+        if (res != undefined) {
             console.log(res);
             courseName = res.name;
             courseContent = res.content;
@@ -39,20 +42,20 @@
         command.requestData = data;
         console.log(data);
 
-        var res = commandService.send(command);
+        var res = sendCommand(command);
         console.log(res);
     }
 </script>
 
 <div class="ui">
-    <h3> Edit course: {name}</h3>
+    <h4>Edit course: {name}</h4>
     <input bind:value={courseName} placeholder="enter topic name" />
     <textarea bind:value={courseContent} />
     <button on:click={updateCourse}>Update course</button>
 </div>
 
 <style>
-.ui{
-    max-width: 300px;
-}
+    .ui {
+        max-width: 300px;
+    }
 </style>

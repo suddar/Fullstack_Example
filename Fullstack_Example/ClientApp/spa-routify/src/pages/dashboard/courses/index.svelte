@@ -1,21 +1,24 @@
-<!-- <script>
-    import { onMount } from "svelte/types/runtime/internal/lifecycle";
+<script>
+    import { onMount } from "svelte";
     import { Command, CommandNames } from "../../../models/command";
-
-    import CommandService from "../../../services/command-service";
-
-    let commandService = new CommandService();
-    let topics = [];
+    import { sendCommand } from "../../../services/command-service";
+    let courses = [];
 
     onMount(async () => {
-        await getTopics();
+        await getCourses();
     });
 
-    async function getTopics() {
+    async function getCourses() {
         let command = new Command();
-        command.name = CommandNames.GetTopicById;
-        topics = await commandService.send(command);
+        command.name = CommandNames.GetCourses;
+        courses = await sendCommand(command);
     }
-</script> -->
+</script>
 
-<h1>This is courses</h1>
+<h1>This is courses page</h1>
+
+{#each courses as course}
+    <li>
+        {course.name}
+    </li>
+{/each}
