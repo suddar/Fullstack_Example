@@ -17,6 +17,11 @@ export const CommandNames = {
     GetCourseById: "GetCourseById",
     GetCourses: 'GetCourses',
     UpdateCourse: "UpdateCourse",
-    DeleteCourse: "DeleteCourse"
+    DeleteCourse: "DeleteCourse",
+    //#endregion
+
+    //#region user commands
+    UserLogin: "UserLogin",
+    UserRegister: "UserRegister",
     //#endregion
 }

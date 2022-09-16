@@ -13,6 +13,7 @@ namespace Fullstack_Example.Controllers
     [ApiController]
     public class ApiController : ControllerBase
     {
+
         private readonly ICommandService _commandService;
         private readonly AppDbContext _dbContext;
         public ApiController(ICommandService handlerService, AppDbContext dbContext)
@@ -24,7 +25,7 @@ namespace Fullstack_Example.Controllers
         [Authorize]
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Post([FromBody] Command command)
+        public IActionResult Post([FromBody] Command command)
         {
             return Ok(_commandService.Handle(command));
         }

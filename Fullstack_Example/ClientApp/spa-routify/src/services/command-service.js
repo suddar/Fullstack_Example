@@ -34,3 +34,13 @@ export async function sendCommand(command) {
         return undefined;
     }
 }
+
+export async function sendAuthCommand(command) {
+    try {
+        let baseUrl = "https://localhost:5555/api/auth";
+        let response = await axios.post(baseUrl, command);
+        return response.data
+    } catch (error) {
+        return undefined;
+    }
+}

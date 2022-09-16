@@ -3,5 +3,6 @@
     public interface ICommandService
     {
         object? Handle(Command command);
+        object? AuthHandle(Command command);
     }
 }

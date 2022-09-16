@@ -1,4 +1,5 @@
 ﻿using Fullstack_Example.Architecture.Application.Commands.Topics;
+using Fullstack_Example.Architecture.Application.Commands.Users;
 
 namespace Fullstack_Example.Architecture.Domain.Enums
 {
@@ -24,5 +25,8 @@ namespace Fullstack_Example.Architecture.Domain.Enums
         public const string GetCourses = "GetCourses";
         public const string UpdateCourse = "UpdateCourse";
         public const string DeleteCourse = "DeleteCourse";
+
+        public const string UserLogin = "UserLogin";
+        public const string UserRegister = "UserRegister";
     }
 }

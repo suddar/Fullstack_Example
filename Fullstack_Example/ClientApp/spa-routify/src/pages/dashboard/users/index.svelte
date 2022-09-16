@@ -1,4 +1,8 @@
 <script>
+    import Login from "./login.svelte";
+
+</script>
+<!-- <script>
     import axios from "axios";
     import { login, register } from "../../../services/user-service";
 
@@ -45,4 +49,6 @@
 <input bind:value={password} placeholder="Password" />
 <input bind:value={email} placeholder="Email" />
 
-<button on:click={onRegister}>Register</button>
+<button on:click={onRegister}>Register</button> -->
+
+<Login/>
